@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { SequelizeModuleOptions, SequelizeOptionsFactory } from '@nestjs/sequelize';
-import { URL } from 'url';
-import { ConfigService } from '../config.service';
+import User from 'src/user/models/user';
+import { ConfigService } from './config.service';
 
 @Injectable()
 export class SequelizeConfigService implements SequelizeOptionsFactory {
@@ -9,7 +9,6 @@ export class SequelizeConfigService implements SequelizeOptionsFactory {
 
   createSequelizeOptions(): SequelizeModuleOptions {
     const url = new URL(this.configService.get('DATABASE_URL'));
-
     return {
       dialect: 'postgres',
       host: url.hostname,
@@ -17,7 +16,7 @@ export class SequelizeConfigService implements SequelizeOptionsFactory {
       username: url.username,
       password: url.password,
       database: url.pathname.replace('/', ''),
-      models: [],
+      models: [User],
     }
   }
 }
