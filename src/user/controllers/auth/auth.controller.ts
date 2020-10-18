@@ -17,7 +17,7 @@ export class AuthController {
   ) { }
 
   @Post('signin')
-  async signin(@Body() body: SigninDTO): Promise<{ token: string }> {
+  async signin(@Body() body: SigninDTO): Promise<Record<string, any>> {
     const ERROR_MESSAGE = 'Username or password is wrong';
     const user = await this.userModel.findOne({ where: { email: body.email } });
     if (!user) {
@@ -30,7 +30,15 @@ export class AuthController {
     }
 
     const token = await this.authService.signToken(user);
-    return { token: token };
+
+    return {
+      token: token,
+      user: {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName
+      }
+    };
   }
 
 
