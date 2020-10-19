@@ -1,11 +1,6 @@
 import { BadRequestException, HttpService, Injectable } from '@nestjs/common';
+import { IMapGeocode } from 'src/interfaces/map';
 import { ConfigService } from './config.service';
-
-interface IMapGeocode {
-  address: string;
-  longitude: string;
-  latitude: string;
-}
 
 @Injectable()
 export class MapService {
