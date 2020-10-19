@@ -1,4 +1,4 @@
-import { Body, Controller, Get, NotFoundException, Param, Patch, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { AdminGuard } from 'src/auth/guards/admin.guard';
 import { UserDecorator } from 'src/decroators/user.decorator';
@@ -68,5 +68,14 @@ export class MarketController {
     });
 
     return id ? markets[0] : markets;
+  }
+
+  @Delete(':id')
+  async deleteMarket(
+    @UserDecorator('id') ownerId: string,
+    @Param('id') id: string
+  ): Promise<{ message: string }> {
+    await this.marketModel.destroy({ where: { id, ownerId } });
+    return { message: 'success' }
   }
 }
