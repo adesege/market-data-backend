@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { SequelizeModuleOptions, SequelizeOptionsFactory } from '@nestjs/sequelize';
+import Market from 'src/market/models/market';
 import User from 'src/user/models/user';
 import { ConfigService } from './config.service';
 
@@ -16,7 +17,7 @@ export class SequelizeConfigService implements SequelizeOptionsFactory {
       username: url.username,
       password: url.password,
       database: url.pathname.replace('/', ''),
-      models: [User],
+      models: [User, Market],
     }
   }
 }

@@ -1,6 +1,7 @@
 import { DataTypes } from "sequelize";
-import { Column, Model, Table } from "sequelize-typescript";
+import { Column, HasMany, Model, Table } from "sequelize-typescript";
 import { IRoles } from "src/interfaces/role";
+import Market from "src/market/models/market";
 
 @Table
 class User extends Model<User> {
@@ -18,6 +19,9 @@ class User extends Model<User> {
 
   @Column({ type: DataTypes.ARRAY(DataTypes.STRING) })
   roles: IRoles[];
+
+  @HasMany(() => Market)
+  markets: Market[]
 };
 
 export default User;

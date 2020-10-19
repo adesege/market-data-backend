@@ -3,4 +3,5 @@ export interface IEnvironmentVariables {
   PORT: number;
   JWT_SECRET: string;
   JWT_EXPIRES_IN: string;
+  GOOGLE_MAPS_KEY: string;
 }

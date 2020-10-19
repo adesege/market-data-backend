@@ -3,6 +3,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config/dist/config.module';
 import { SequelizeModule } from '@nestjs/sequelize/dist/sequelize.module';
 import { AuthModule } from './auth/auth.module';
+import { MarketModule } from './market/market.module';
 import { SequelizeConfigService } from './services/sequelize-config.service';
 import { UserModule } from './user/user.module';
 
@@ -17,6 +18,7 @@ import { UserModule } from './user/user.module';
         DATABASE_URL: Joi.string().uri().required(),
         JWT_EXPIRES_IN: Joi.string().required(),
         JWT_SECRET: Joi.string().required(),
+        GOOGLE_MAPS_KEY: Joi.string().required(),
       }).required()
     }),
     SequelizeModule.forRootAsync({
@@ -24,6 +26,7 @@ import { UserModule } from './user/user.module';
     }),
     AuthModule,
     UserModule,
+    MarketModule,
   ],
   providers: [SequelizeConfigService],
 })

@@ -31,7 +31,7 @@ export class AuthService {
       email: user.email,
       firstName: user.firstName,
       lastName: user.lastName,
-      role: user.roles,
+      roles: user.roles,
       id: user.id
     };
     return this.jwtService.signAsync(payload);
