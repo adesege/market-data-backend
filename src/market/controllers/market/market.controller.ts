@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { AdminGuard } from 'src/auth/guards/admin.guard';
 import { UserDecorator } from 'src/decroators/user.decorator';
@@ -26,5 +26,16 @@ export class MarketController {
     });
 
     return market;
+  }
+
+  @Get()
+  async getMarkets(): Promise<Market[]> {
+    const markets = await this.marketModel.findAll({
+      attributes: {
+        exclude: ['createdAt', 'updatedAt', 'ownerId']
+      }
+    });
+
+    return markets;
   }
 }
