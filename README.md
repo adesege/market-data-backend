@@ -6,6 +6,9 @@
 
 Haversine formula is used to search for nearest market location. Read more about it [here](https://en.wikipedia.org/wiki/Haversine_formula)
 
+- The base search distance is `25km`. That is, the search algorithm will search for businesses within 25km of the user's location using the Haversine formula
+
+
 ## Installation
 
 ```bash
@@ -16,7 +19,7 @@ $ yarn install
 $ cp .env.sample .env
 ```
 
-Create Google API by following the instructions [here](https://developers.google.com/maps/documentation/geocoding/get-api-key)
+Create Google API key by following the instructions [here](https://developers.google.com/maps/documentation/geocoding/get-api-key)
 
 
 ## Running the app
@@ -26,5 +29,7 @@ Create Google API by following the instructions [here](https://developers.google
 $ yarn start:dev
 
 # production mode
-$ yarn start:prod
+$ yarn start
 ```
+
+Api can be accessed via http://localhost:5100 in development environment.
