@@ -1,7 +1,9 @@
 import { Body, ConflictException, Controller, Post, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
+import { Op } from 'sequelize';
 import { Sequelize } from 'sequelize-typescript';
 import { AuthService } from 'src/auth/services/auth.service';
+import { IRoles } from 'src/interfaces/role';
 import { BcryptService } from 'src/services/bcrypt.service';
 import { SigninDTO } from 'src/user/interfaces/signin.dto';
 import { CreateUserDTO } from 'src/user/interfaces/signup.dto';
@@ -19,7 +21,14 @@ export class AuthController {
   @Post('signin')
   async signin(@Body() body: SigninDTO): Promise<Record<string, any>> {
     const ERROR_MESSAGE = 'Username or password is wrong';
-    const user = await this.userModel.findOne({ where: { email: body.email } });
+    const user = await this.userModel.findOne({
+      where: {
+        email: body.email,
+        roles: {
+          [Op.contains]: [IRoles.ADMIN]
+        }
+      }
+    });
     if (!user) {
       throw new UnauthorizedException(ERROR_MESSAGE);
     }
