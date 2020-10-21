@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { MarketModule } from './market/market.module';
 import { SequelizeConfigService } from './services/sequelize-config.service';
 import { UserModule } from './user/user.module';
+import { SearchModule } from './search/search.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { UserModule } from './user/user.module';
     AuthModule,
     UserModule,
     MarketModule,
+    SearchModule,
   ],
   providers: [SequelizeConfigService],
 })

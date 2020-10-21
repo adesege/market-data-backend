@@ -7,6 +7,7 @@ import Market from './models/market';
 @Module({
   imports: [SequelizeModule.forFeature([Market]), HttpModule],
   controllers: [MarketController],
-  providers: [MapService]
+  providers: [MapService],
+  exports: [SequelizeModule]
 })
 export class MarketModule { }
