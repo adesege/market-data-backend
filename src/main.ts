@@ -7,7 +7,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('/api');
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, }));
-  app.enableCors({ origin: [/localhost:9000/] });
+  app.enableCors({ origin: [/localhost:9000/, /market-data-frontend.vercel.app/] });
 
   const configService = app.get(ConfigService);
 
