@@ -1,6 +1,6 @@
 export enum IMarketCategories {
-  Furniture = 'Furniture',
-  Groceries = 'Groceries',
-  Restaurants = 'Restaurants',
-  Electronics = 'Electronics',
+  Fruit = 'Fruit',
+  Vegetables = 'Vegetables',
+  Cereal = 'Cereal',
+  Fats = 'Fats',
 }
